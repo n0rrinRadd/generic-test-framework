@@ -1,4 +1,7 @@
+import markers.RegressionTests;
+import markers.SmokeTests;
 import org.junit.*;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 
 import static io.restassured.RestAssured.given;
@@ -10,12 +13,14 @@ public class Tests extends BaseTest {
     Elements elements;
     Utilities utilities;
 
+    @Category(SmokeTests.class)
     @Test
     public void webchatPageReturns200() throws InterruptedException {
         softly.assertThat(given().when().baseUri(baseURL).get().getStatusCode()==200);
         softly.assertAll();
     }
 
+    @Category(SmokeTests.class)
     @Test
     public void webchatPageLoadsElements() throws InterruptedException {
         elements = new Elements(driver);
@@ -24,6 +29,7 @@ public class Tests extends BaseTest {
         softly.assertAll();
     }
 
+    @Category(SmokeTests.class)
     @Test
     public void podiumModalLoads() throws InterruptedException {
         elements = new Elements(driver);
@@ -36,6 +42,7 @@ public class Tests extends BaseTest {
         softly.assertAll();
     }
 
+    @Category(RegressionTests.class)
     @Test
     public void podiumModalLoadsElements() throws InterruptedException {
         elements = new Elements(driver);
@@ -51,6 +58,7 @@ public class Tests extends BaseTest {
         softly.assertAll();
     }
 
+    @Category(RegressionTests.class)
     @Test
     public void podiumModalSelectLocationLoadsWidgetElements() throws InterruptedException {
         elements = new Elements(driver);
@@ -66,6 +74,7 @@ public class Tests extends BaseTest {
         softly.assertAll();
     }
 
+    @Category(RegressionTests.class)
     @Test
     public void podiumModalNullInputWidgetDisplaysFieldValidation() throws InterruptedException {
         elements = new Elements(driver);
